@@ -1,0 +1,127 @@
+---
+title: "generate_ids"
+author: "Marc"
+date: "2024-05-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+libraries
+```{r}
+library(skimr)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(stringi)
+library(devtools)
+```
+
+load
+```{r}
+getwd()
+setwd("/Users/marcforto14/Desktop/SDM/LAB/P2/KnowledgeGraphs_SDM/clean_datasets")
+```
+
+Author:
+```{r}
+df_author<-read.csv("Node_author.csv",sep=";",row.names =NULL, fileEncoding = "UTF-8") # load
+df_author$author_id <- paste0("a", seq_along(df_author$author))
+
+df_author_paper_rev <- read.csv("Edge_paper_author_reviews.csv",row.names =NULL, fileEncoding = "UTF-8")
+# Substitute author names with author_ids
+df_author_paper_rev$author_id <- ifelse(df_author_paper_rev$author %in% df_author$author, 
+                          df_author$author_id[match(df_author_paper_rev$author, df_author$author)], 
+                          df_author_paper_rev$author)
+df_author_paper_rev$rev_id <- paste0("r", seq_along(df_author_paper_rev$author))
+
+
+df_author_paper<- read.csv("Edge_papers_author.csv",row.names =NULL, fileEncoding = "UTF-8")
+# Substitute author names with author_ids
+df_author_paper$author <- ifelse(df_author_paper$author %in% df_author$author, 
+                          df_author$author_id[match(df_author_paper$author, df_author$author)], 
+                          df_author_paper$author)
+
+# Save modified datasets
+write.csv(df_author, "newdata/Node_author.csv", row.names = FALSE)
+write.csv(df_author_paper_rev, "newdata/Edge_paper_author_reviews.csv", row.names = FALSE)
+write.csv(df_author_paper, "newdata/Edge_papers_author.csv", row.names = FALSE)
+```
+Volume, journal
+```{r}
+df_vol<-read.csv("Node_volumes.csv",sep=",",row.names =NULL, fileEncoding = "UTF-8") # load
+df_vol$volume_id <- paste0("v", seq_along(df_vol$volume))
+
+df_vol_paper <- read.csv("Edge_paper_volumes.csv",row.names =NULL, fileEncoding = "UTF-8")
+# Substitute author names with author_ids
+df_vol_paper$id_volume <- ifelse(df_vol_paper$id_volume %in% df_vol$volume, 
+                          df_vol$volume_id[match(df_vol_paper$id_volume, df_vol$volume)], 
+                          df_vol_paper$id_volume)
+
+df_vol_jour<- read.csv("Edge_volumes_journal.csv",row.names =NULL, fileEncoding = "UTF-8")
+# Substitute author names with author_ids
+df_vol_jour$id_volume <- ifelse(df_vol_jour$id_volume %in% df_vol$volume, 
+                          df_vol$volume_id[match(df_vol_jour$id_volume, df_vol$volume)], 
+                          df_vol_jour$id_volume)
+
+df_jour<-read.csv("Node_journals.csv",sep=",",row.names =NULL, fileEncoding = "UTF-8") # load
+df_jour$journal_id <- paste0("j", seq_along(df_jour$x))
+
+df_vol_jour$journal <- ifelse(df_vol_jour$journal %in% df_jour$x, 
+                          df_jour$journal_id[match(df_vol_jour$journal, df_jour$x)], 
+                          df_vol_jour$journal)
+
+df_jour_com <- read.csv("Edge_journal_community.csv",row.names =NULL, fileEncoding = "UTF-8")
+# Substitute author names with author_ids
+df_jour_com$journal <- ifelse(df_jour_com$journal %in% df_jour$x, 
+                          df_jour$journal_id[match(df_jour_com$journal, df_jour$x)], 
+                          df_jour_com$journal)
+
+# Save modified datasets
+write.csv(df_vol, "newdata/Node_volumes.csv", row.names = FALSE)
+write.csv(df_jour, "newdata/Node_journals.csv", row.names = FALSE)
+write.csv(df_vol_paper, "newdata/Edge_paper_volumes.csv", row.names = FALSE)
+write.csv(df_vol_jour, "newdata/Edge_volumes_journal.csv", row.names = FALSE)
+write.csv(df_jour_com, "newdata/Edge_journal_community.csv", row.names = FALSE)
+```
+
+edition, conference
+```{r}
+df_conf<-read.csv("Node_conference.csv",sep=",",row.names =NULL, fileEncoding = "UTF-8") # load
+df_conf$conference_id <- paste0("c", seq_along(df_conf$conference))
+
+df_conf_edi <- read.csv("Edge_edition_conference.csv",row.names =NULL, fileEncoding = "UTF-8")
+# Substitute author names with author_ids
+df_conf_edi$conference <- ifelse(df_conf_edi$conference %in% df_conf$conference, 
+                          df_conf$conference_id[match(df_conf_edi$conference, df_conf$conference)], 
+                          df_conf_edi$conference)
+
+df_conf_com <- read.csv("Edge_conference_community.csv",row.names =NULL, fileEncoding = "UTF-8")
+# Substitute author names with author_ids
+df_conf_com$conference <- ifelse(df_conf_com$conference %in% df_conf$conference, 
+                          df_conf$conference_id[match(df_conf_com$conference, df_conf$conference)], 
+                          df_conf_com$conference)
+
+
+# Save modified datasets
+write.csv(df_conf, "newdata/Node_conference.csv", row.names = FALSE)
+write.csv(df_conf_edi, "newdata/Edge_edition_conference.csv", row.names = FALSE)
+write.csv(df_conf_com, "newdata/Edge_conference_community.csv", row.names = FALSE)
+```
+
+keywords
+```{r}
+df_keywords<-read.csv("Node_keywords.csv",sep=",",row.names =NULL, fileEncoding = "UTF-8") # load
+df_keywords$keywords_id <- paste0("k", seq_along(df_keywords$Node_keywords))
+
+df_paper_key <- read.csv("Edge_paper_keywords.csv",row.names =NULL, fileEncoding = "UTF-8")
+# Substitute author names with author_ids
+df_paper_key$keywords <- ifelse(df_paper_key$keywords %in% df_keywords$Node_keywords, 
+                          df_keywords$keywords_id[match(df_paper_key$keywords, df_keywords$Node_keywords)], 
+                          df_paper_key$keywords)
+
+write.csv(df_keywords, "newdata/Node_keywords.csv", row.names = FALSE)
+write.csv(df_paper_key, "newdata/Edge_paper_keywords.csv", row.names = FALSE)
+```

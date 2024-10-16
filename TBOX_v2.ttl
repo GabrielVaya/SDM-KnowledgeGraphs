@@ -1,0 +1,349 @@
+@prefix : <http://www.gra.fo/schema/sdm/> .
+@prefix gf: <http://www.gra.fo/schema/sdm/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.gra.fo/schema/sdm/> .
+
+<http://www.gra.fo/schema/sdm/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.gra.fo/schema/sdm/about
+gf:about rdf:type rdfs:ObjectProperty ;
+         rdfs:domain gf:Review ;
+         rdfs:range gf:Paper ;
+         rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+         rdfs:label ":about" .
+
+
+###  http://www.gra.fo/schema/sdm/cites
+gf:cites rdf:type rdfs:ObjectProperty ;
+         rdfs:domain gf:Paper ;
+         rdfs:range gf:Paper ;
+         rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+         rdfs:label ":cites" .
+
+
+###  http://www.gra.fo/schema/sdm/conf_pertains_to
+gf:conf_pertains_to rdf:type rdfs:ObjectProperty ;
+                    rdfs:domain gf:Conference ;
+                    rdfs:range gf:Community ;
+                    rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+                    rdfs:label ":conf_pertains_to" .
+
+
+###  http://www.gra.fo/schema/sdm/corr_author
+gf:corr_author rdf:type rdfs:ObjectProperty ;
+               rdfs:domain gf:Author ;
+               rdfs:range gf:Paper ;
+               rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+               rdfs:label ":corr_author" .
+
+
+###  http://www.gra.fo/schema/sdm/holds
+gf:holds rdf:type rdfs:ObjectProperty ;
+         rdfs:domain gf:Venue ;
+         rdfs:range gf:Vol_edi ;
+         rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+         rdfs:label ":holds" .
+
+
+###  http://www.gra.fo/schema/sdm/holds_conf
+gf:holds_conf rdf:type rdfs:ObjectProperty ;
+              rdfs:domain gf:Conference ;
+              rdfs:range gf:Edition ;
+              rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+              rdfs:label ":holds_conf" .
+
+
+###  http://www.gra.fo/schema/sdm/holds_jour
+gf:holds_jour rdf:type rdfs:ObjectProperty ;
+              rdfs:domain gf:Journal ;
+              rdfs:range gf:Volume ;
+              rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+              rdfs:label ":holds_jour" .
+
+
+###  http://www.gra.fo/schema/sdm/jour_pertains_to
+gf:jour_pertains_to rdf:type rdfs:ObjectProperty ;
+                    rdfs:domain gf:Journal ;
+                    rdfs:range gf:Community ;
+                    rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+                    rdfs:label ":jour_pertains_to" .
+
+
+###  http://www.gra.fo/schema/sdm/publ_in
+gf:publ_in rdf:type rdfs:ObjectProperty ;
+           rdfs:domain gf:Vol_edi ;
+           rdfs:range gf:Paper ;
+           rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+           rdfs:label ":publ_in" .
+
+
+###  http://www.gra.fo/schema/sdm/publ_in_edi
+gf:publ_in_edi rdf:type rdfs:ObjectProperty ;
+               rdfs:domain gf:Edition ;
+               rdfs:range gf:Paper ;
+               rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+               rdfs:label ":publ_in_edi" .
+
+
+###  http://www.gra.fo/schema/sdm/publ_in_vol
+gf:publ_in_vol rdf:type rdfs:ObjectProperty ;
+               rdfs:domain gf:Volume ;
+               rdfs:range gf:Paper ;
+               rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+               rdfs:label ":publ_in_vol" .
+
+
+###  http://www.gra.fo/schema/sdm/relates_to
+gf:relates_to rdf:type rdfs:ObjectProperty ;
+              rdfs:domain gf:Paper ;
+              rdfs:range gf:Keyword ;
+              rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+              rdfs:label ":relates_to" .
+
+
+###  http://www.gra.fo/schema/sdm/writes
+gf:writes rdf:type rdfs:ObjectProperty ;
+          rdfs:domain gf:Author ;
+          rdfs:range gf:Paper ;
+          rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+          rdfs:label ":writes" .
+
+
+###  http://www.gra.fo/schema/sdm/writes_r
+gf:writes_r rdf:type rdfs:ObjectProperty ;
+            rdfs:domain gf:Reviewer ;
+            rdfs:range gf:Review ;
+            rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+            rdfs:label ":writes_r" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.gra.fo/schema#abstract
+<http://www.gra.fo/schema#abstract> rdf:type rdfs:DatatypeProperty ;
+                                    rdfs:domain gf:Paper ;
+                                    rdfs:range xsd:string ;
+                                    rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+                                    rdfs:label ":abstract" .
+
+
+###  http://www.gra.fo/schema/sdm/author_name
+gf:author_name rdf:type rdfs:DatatypeProperty ;
+               rdfs:domain gf:Author ;
+               rdfs:range xsd:string ;
+               rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+               rdfs:label "author_name" .
+
+
+###  http://www.gra.fo/schema/sdm/community_name
+gf:community_name rdf:type rdfs:DatatypeProperty ;
+                  rdfs:domain gf:Community ;
+                  rdfs:range xsd:string ;
+                  rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+                  rdfs:label "community_name" .
+
+
+###  http://www.gra.fo/schema/sdm/conf_name
+gf:conf_name rdf:type rdfs:DatatypeProperty ;
+             rdfs:domain gf:Conference ;
+             rdfs:range xsd:string ;
+             rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+             rdfs:label "conf_name" .
+
+
+###  http://www.gra.fo/schema/sdm/content
+gf:content rdf:type rdfs:DatatypeProperty ;
+           rdfs:domain gf:Review ;
+           rdfs:range xsd:string ;
+           rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+           rdfs:label ":content" .
+
+
+###  http://www.gra.fo/schema/sdm/decision
+gf:decision rdf:type rdfs:DatatypeProperty ;
+            rdfs:domain gf:Review ;
+            rdfs:range xsd:boolean ;
+            rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+            rdfs:label ":decision" .
+
+
+###  http://www.gra.fo/schema/sdm/doi
+gf:doi rdf:type rdfs:DatatypeProperty ;
+       rdfs:domain gf:Paper ;
+       rdfs:range xsd:string ;
+       rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+       rdfs:label ":doi" .
+
+
+###  http://www.gra.fo/schema/sdm/edi_name
+gf:edi_name rdf:type rdfs:DatatypeProperty ;
+            rdfs:domain gf:Edition ;
+            rdfs:range xsd:string ;
+            rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+            rdfs:label ":edi_name" .
+
+
+###  http://www.gra.fo/schema/sdm/edi_num
+gf:edi_num rdf:type rdfs:DatatypeProperty ;
+           rdfs:domain gf:Edition ;
+           rdfs:range xsd:string ;
+           rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+           rdfs:label ":edi_num" .
+
+
+###  http://www.gra.fo/schema/sdm/edi_year
+gf:edi_year rdf:type rdfs:DatatypeProperty ;
+            rdfs:domain gf:Edition ;
+            rdfs:range xsd:int ;
+            rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+            rdfs:label ":edi_year" .
+
+
+###  http://www.gra.fo/schema/sdm/jour_name
+gf:jour_name rdf:type rdfs:DatatypeProperty ;
+             rdfs:domain gf:Journal ;
+             rdfs:range xsd:string ;
+             rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+             rdfs:label "jour_name" .
+
+
+###  http://www.gra.fo/schema/sdm/keyword
+gf:keyword rdf:type rdfs:DatatypeProperty ;
+           rdfs:domain gf:Keyword ;
+           rdfs:range xsd:string ;
+           rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+           rdfs:label ":keyword" .
+
+
+###  http://www.gra.fo/schema/sdm/reviewer_name
+gf:reviewer_name rdf:type rdfs:DatatypeProperty ;
+                 rdfs:domain gf:Reviewer ;
+                 rdfs:range xsd:string ;
+                 rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+                 rdfs:label ":reviewer_name" .
+
+
+###  http://www.gra.fo/schema/sdm/title
+gf:title rdf:type rdfs:DatatypeProperty ;
+         rdfs:domain gf:Paper ;
+         rdfs:range xsd:string ;
+         rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+         rdfs:label ":title" .
+
+
+###  http://www.gra.fo/schema/sdm/vol_name
+gf:vol_name rdf:type rdfs:DatatypeProperty ;
+            rdfs:domain gf:Volume ;
+            rdfs:range xsd:string ;
+            rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+            rdfs:label ":vol_name" .
+
+
+###  http://www.gra.fo/schema/sdm/vol_year
+gf:vol_year rdf:type rdfs:DatatypeProperty ;
+            rdfs:domain gf:Volume ;
+            rdfs:range xsd:int ;
+            rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+            rdfs:label ":vol_year" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.gra.fo/schema/sdm/Author
+gf:Author rdf:type owl:Class ;
+          rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+          rdfs:label ":Author" .
+
+
+###  http://www.gra.fo/schema/sdm/Community
+gf:Community rdf:type owl:Class ;
+             rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+             rdfs:label ":Community" .
+
+
+###  http://www.gra.fo/schema/sdm/Conference
+gf:Conference rdf:type owl:Class ;
+              rdfs:subClassOf gf:Venue ;
+              rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+              rdfs:label ":Conference" .
+
+
+###  http://www.gra.fo/schema/sdm/Edition
+gf:Edition rdf:type owl:Class ;
+           rdfs:subClassOf gf:Vol_edi ;
+           rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+           rdfs:label ":Edition" .
+
+
+###  http://www.gra.fo/schema/sdm/Journal
+gf:Journal rdf:type owl:Class ;
+           rdfs:subClassOf gf:Venue ;
+           rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+           rdfs:label ":Journal" .
+
+
+###  http://www.gra.fo/schema/sdm/Keyword
+gf:Keyword rdf:type owl:Class ;
+           rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+           rdfs:label ":Keyword" .
+
+
+###  http://www.gra.fo/schema/sdm/Paper
+gf:Paper rdf:type owl:Class ;
+         rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+         rdfs:label ":Paper" .
+
+
+###  http://www.gra.fo/schema/sdm/Review
+gf:Review rdf:type owl:Class ;
+          rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+          rdfs:label ":Review" .
+
+
+###  http://www.gra.fo/schema/sdm/Reviewer
+gf:Reviewer rdf:type owl:Class ;
+            rdfs:subClassOf gf:Author ;
+            rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+            rdfs:label ":Reviewer" .
+
+
+###  http://www.gra.fo/schema/sdm/Venue
+gf:Venue rdf:type owl:Class ;
+         rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+         rdfs:label ":Venue" .
+
+
+###  http://www.gra.fo/schema/sdm/Vol_edi
+gf:Vol_edi rdf:type owl:Class ;
+           rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+           rdfs:label ":Vol_Edi" .
+
+
+###  http://www.gra.fo/schema/sdm/Volume
+gf:Volume rdf:type owl:Class ;
+          rdfs:subClassOf gf:Vol_edi ;
+          rdfs:isDefinedBy <http://www.gra.fo/schema/sdm/> ;
+          rdfs:label ":Volume" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<http://www.gra.fo/schema/sdm/> rdfs:comment "SDM Knowledge Graph" ;
+                                rdfs:label "KnowledgeGraph_SDM" .
+
+
+###  Generated by the OWL API (version 5.1.17) https://github.com/owlcs/owlapi/
